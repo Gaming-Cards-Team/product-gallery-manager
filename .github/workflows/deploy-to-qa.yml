@@ -48,7 +48,7 @@ jobs:
       run: |
         npm run it    
       env:
-        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_IT }}
+        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_LOCALHOST }}
         PORT: 8080
 
   deploy_to_QA:
@@ -72,7 +72,7 @@ jobs:
     - name: Run database update scripts
       uses: appleboy/ssh-action@master
       env: 
-        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_IT }}
+        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_LOCALHOST }}
       with:
         host: ${{ secrets.AWS_SERVER_QA }}
         username: ${{ secrets.AWS_USER_QA }}
