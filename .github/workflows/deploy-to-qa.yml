@@ -41,6 +41,7 @@ jobs:
     - name: Starting integration test container 
       run: |
         docker-compose up -d 
+        docker ps -a
 
     - name: Running integration tests  
       run: |
