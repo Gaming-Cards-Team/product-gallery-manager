@@ -9,12 +9,6 @@ jobs:
     name: Deploy to QA checker
     runs-on: ubuntu-latest
 
-    services:
-      mongo:
-        image: mongo
-        ports:
-          - 27017:27017
-
     strategy:
       matrix:
         node-version: [12.x]
@@ -43,6 +37,10 @@ jobs:
     - name: Running unit tests  
       run: |
         npm test    
+
+    - name: Starting integration test container 
+      run: |
+        docker-compose up -d 
 
     - name: Running integration tests  
       run: |
