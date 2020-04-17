@@ -14,7 +14,7 @@ describe('Product gallery', () => {
     it('should return all of products', (done) => {
         
         // eslint-disable-next-line max-len
-        const productsExpected = '[{"_id":1,"name":"Card 1","__v":0},{"_id":2,"name":"Card 2","__v":0},{"_id":3,"name":"Card 3","__v":0},{"_id":4,"name":"Card 4","__v":0}]'
+        const productsExpected = '[{"_id":1,"name":"Card 1","__v":0},{"_id":2,"name":"Card 2","__v":0},{"_id":3,"name":"Card 3","__v":0},{"_id":4,"name":"Card 4","__v":0},{"_id":5,"name":"Card 5","__v":0}]'
 
         request
             .get('/show-gallery')
