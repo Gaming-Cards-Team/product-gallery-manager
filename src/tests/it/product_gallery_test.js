@@ -17,7 +17,7 @@ describe('Product gallery', () => {
         const productsExpected = '[{"_id":1,"name":"Card 1","__v":0},{"_id":2,"name":"Card 2","__v":0},{"_id":3,"name":"Card 3","__v":0},{"_id":4,"name":"Card 4","__v":0},{"_id":5,"name":"Card 5","__v":0}]'
 
         request
-            .get('/show-gallery')
+            .get('/api/v1/show-gallery')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
@@ -29,7 +29,7 @@ describe('Product gallery', () => {
         const productExpected = '{"_id":1,"name":"Card 1","__v":0}'
 
         request
-            .get('/show-product/1')
+            .get('/api/v1/show-product/1')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
