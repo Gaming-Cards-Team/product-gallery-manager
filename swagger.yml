@@ -1,15 +1,15 @@
 openapi: 3.0.1
 info:
-  title: defaultTitle
-  description: defaultDescription
+  title: Gaming cards
+  description: Gaming cards API
   version: '0.1'
 paths:
   /api/v1/show-gallery:
     get:
-      description: Auto generated using Swagger Inspector
+      description: Get all products
       responses:
         default:
-          description: Auto generated using Swagger Inspector
+          description: Response
           content:
             application/json; charset=utf-8:
               schema:
