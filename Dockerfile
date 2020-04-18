@@ -9,7 +9,7 @@ RUN npm install
 
 # Bundle app source
 COPY src/main src/main
-COPY swaggwer.yml ./
+COPY swagger.yml ./
 RUN npm run build
 RUN rm -R src/
 
