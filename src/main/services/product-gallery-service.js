@@ -1,4 +1,4 @@
-
+import pagination from 'paginate-array'
 import request from 'request'
 
 module.exports = function () {
@@ -18,8 +18,9 @@ module.exports = function () {
                     return console.dir(error);
                 }
                 cardsResult = JSON.parse(body).map(toCard);
-                done(error, cardsResult);
-                console.dir(cardsResult);
+                const arrayPaginated = pagination(cardsResult,158,10);
+                done(error, arrayPaginated);
+                console.dir(arrayPaginated);
             });
          },
 
