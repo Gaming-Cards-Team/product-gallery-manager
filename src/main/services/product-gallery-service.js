@@ -10,7 +10,7 @@ module.exports = function () {
 
     return {
         
-        showGallery(done) {
+        showGallery(page,limit,done) {
             
             let cardsResult = []
             request.get("https://swdestinydb.com/api/public/cards/", (error, response, body) => {
@@ -18,7 +18,7 @@ module.exports = function () {
                     return console.dir(error);
                 }
                 cardsResult = JSON.parse(body).map(toCard);
-                const arrayPaginated = pagination(cardsResult,158,10);
+                const arrayPaginated = pagination(cardsResult,page,limit);
                 done(error, arrayPaginated);
                 console.dir(arrayPaginated);
             });

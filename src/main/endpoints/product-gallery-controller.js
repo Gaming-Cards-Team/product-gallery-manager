@@ -4,7 +4,7 @@ module.exports = function (productGalleryService) {
 
         showGallery(req, res) {
             
-            productGalleryService.showGallery((err, cards) => {
+            productGalleryService.showGallery(req.query.page, req.query.limit, (err, cards) => {
                 res.json(cards)
             });
         }, 
