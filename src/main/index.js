@@ -3,6 +3,8 @@ import router from './endpoints/routers.js'
 import swaggerUi from 'swagger-ui-express'
 import yamljs from 'yamljs'
 import cors from 'cors'
+import dotenv from "dotenv";
+dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 
 const swaggerDocument = yamljs.load('swagger.yml')
 

@@ -2,6 +2,7 @@ import express from 'express'
 const productGalleryService = require('../services/product-gallery-service')()
 const productGalleryController = require('./product-gallery-controller')(productGalleryService)
 import getCards from '../../getCards/starWarsCardsController'
+const productGalleryRestConsumer = require('../dataaccess/product-gallery-rest-consumer')()
 
 const router = express.Router();
 

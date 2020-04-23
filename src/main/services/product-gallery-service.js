@@ -1,18 +1,22 @@
-import { Card } from "../dataaccess/entities/card";
+import pagination from "paginate-array";
 
-module.exports = function () {
+module.exports = function (productGalleryRestConsumer) {
+  
+  function toCard(item) {
+    const itemResult = { id: item.code, name: item.name, image: item.imagesrc };
+    return itemResult;
+  }
 
-    return {
-        
-        showGallery(done) {
-        
-            const cardsResult = []
-            Card.find({},  done).sort("_id")
+  return {
+    
+        showGallery(page, limit, done) {
+ 
+            productGalleryRestConsumer.consumeStarWarsGalleryAPI((error, cardsResult) => {
+                cardsResult = cardsResult.map(toCard);
+                const cardsResultPaginated = pagination(cardsResult, page, limit);
+                done(error, cardsResultPaginated);
+            });
         },
-
-        showProduct(id, done) {
-        
-            return Card.findById(id, done) 
-        }
-    }
-}
+        showProduct(id, done) {},
+  };
+};
