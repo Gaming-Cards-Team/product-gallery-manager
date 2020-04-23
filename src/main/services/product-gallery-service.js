@@ -17,7 +17,6 @@ module.exports = function (productGalleryRestConsumer) {
                 done(error, cardsResultPaginated);
             });
         },
-
         showProduct(id, done) {},
   };
 };
