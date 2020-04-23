@@ -10,12 +10,11 @@ module.exports = function (productGalleryRestConsumer) {
   return {
     
         showGallery(page, limit, done) {
-
-            console.log(productGalleryRestConsumer.consumeStarWarsGalleryAPI)  
-            productGalleryRestConsumer.consumeStarWarsGalleryAPI((error, result) => {
-                const cardsResult = result.map(toCard);
-                const arrayPaginated = pagination(cardsResult, page, limit);
-                done(error, arrayPaginated);
+ 
+            productGalleryRestConsumer.consumeStarWarsGalleryAPI((error, cardsResult) => {
+                cardsResult = cardsResult.map(toCard);
+                const cardsResultPaginated = pagination(cardsResult, page, limit);
+                done(error, cardsResultPaginated);
             });
         },
 
