@@ -10,6 +10,7 @@ RUN npm install
 # Bundle app source
 COPY src/ src/
 COPY swagger.yml ./
+COPY babel.config.js ./
 RUN npm run build
 RUN rm -R src/
 
