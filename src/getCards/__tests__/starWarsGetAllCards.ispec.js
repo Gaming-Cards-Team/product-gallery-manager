@@ -7,7 +7,7 @@ describe("Star Wars Cards", () => {
 
   beforeAll(async () => {
     
-    http.createServer(mockserver('src/GetCards/__mocks__/')).listen(8081);
+    http.createServer(mockserver('src/util/apiMocks/')).listen(8081);
   });
 
   it("should get all cards", async () => {
