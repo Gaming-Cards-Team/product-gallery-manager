@@ -5,6 +5,7 @@ import starWarCardsService from "../starWarCardsService";
 
 describe("Star Wars cards gallery service", () => {
   it("should return cards for gallery", async () => {
+    
     const expectedCards = [
       {
         id: "09074",
