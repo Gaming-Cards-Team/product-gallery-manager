@@ -1,7 +1,9 @@
 import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 
 const getAllStarWarsCards = async () => {
-  const url = "https://swdestinydb.com/api/public/cards";
+  const url = `${process.env.STAR_WARS_REST_API_URL}cards`;
   const response = await fetch(url, {
     method: "GET",
   });
@@ -10,4 +12,4 @@ const getAllStarWarsCards = async () => {
   return cardsResponse;
 };
 
-module.exports = getAllStarWarsCards;
+module.exports.getAllStarWarsCards = getAllStarWarsCards

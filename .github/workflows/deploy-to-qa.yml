@@ -26,10 +26,6 @@ jobs:
       run: |
         npm ci
 
-    - name: NPM build  
-      run: |
-        npm run build --if-present
-
     - name: Code review  
       run: |
         npm run eslint
@@ -38,16 +34,10 @@ jobs:
       run: |
         npm test    
 
-    - name: Starting integration test container 
-      run: |
-        docker-compose up -d 
-        docker ps -a
-
     - name: Running integration tests  
       run: |
         npm run it    
       env:
-        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_LOCALHOST }}
         PORT: 8080
 
   deploy_to_QA:
@@ -58,29 +48,6 @@ jobs:
     steps:
     - name: Code checkout
       uses: actions/checkout@v2
-
-    - name: Copy mongo scripts for update
-      uses: garygrossgarten/github-action-scp@release
-      with:
-        local: database-update/
-        remote: database-update/
-        host: ${{ secrets.AWS_SERVER_QA }}
-        username: ${{ secrets.AWS_USER_QA }}
-        privateKey: ${{ secrets.AWS_PRIVATE_KEY }}
-
-    - name: Run database update scripts
-      uses: appleboy/ssh-action@master
-      env: 
-        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL_LOCALHOST }}
-      with:
-        host: ${{ secrets.AWS_SERVER_QA }}
-        username: ${{ secrets.AWS_USER_QA }}
-        key: ${{ secrets.AWS_PRIVATE_KEY }}
-        port: 22
-        envs: PRODUCT_GALLERY_DB_URL
-        script: | 
-          mongo ${PRODUCT_GALLERY_DB_URL} database-update/schema.js
-          mongo ${PRODUCT_GALLERY_DB_URL} database-update/data.js
           
     - name: Upload app images to the registry
       uses: mr-smithers-excellent/docker-build-push@v2
@@ -96,17 +63,16 @@ jobs:
       uses: appleboy/ssh-action@master
       env: 
         TAG: ${{ github.sha }}
-        PRODUCT_GALLERY_DB_URL: ${{ secrets.PRODUCT_GALLERY_DB_URL }}
       with:
         host: ${{ secrets.AWS_SERVER_QA }}
         username: ${{ secrets.AWS_USER_QA }}
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
-        envs: TAG,PRODUCT_GALLERY_DB_URL
+        envs: TAG
         script: | 
           docker rm -f -v product-gallery-manager
           docker rmi -f $(sudo docker images 'jmgorduez/product-gallery-manager' -q)
-          docker run -d -p 8080:8080 --network product-gallery-network -e PRODUCT_GALLERY_DB_URL=${PRODUCT_GALLERY_DB_URL} -e PORT=8080 --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
+          docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
       
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3

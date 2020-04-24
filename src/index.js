@@ -1,5 +1,5 @@
 import express from 'express'
-import router from './endpoints/routers.js'
+import router from './routers.js'
 import swaggerUi from 'swagger-ui-express'
 import yamljs from 'yamljs'
 import cors from 'cors'

@@ -4,14 +4,13 @@
   "description": "Back-end Gaming cards",
   "main": "index.js",
   "scripts": {
-    "unit-test": "jest",
     "transpile": "babel src/main -d --out-dir dist",
     "clean": "rimraf dist",
     "build": "npm-run-all clean transpile",
     "serve": "NODE_ENV=production node ./dist/index.js",
-    "start": "NODE_ENV=development babel-node src/main/index.js",
+    "start": "NODE_ENV=development babel-node src/index.js",
     "dev": "DEBUG=server:debug NODE_ENV=development nodemon --exec babel-node src/main/index.js",
-    "test": "DEBUG=server:debug NODE_ENV=test nyc mocha --require @babel/register --reporter spec --exit   src/tests/unit/* --exec babel-node",
+    "test": "DEBUG=server:debug NODE_ENV=test jest --coverage",
     "it": "DEBUG=server:debug NODE_ENV=test mocha --require @babel/register --reporter spec --exit   src/tests/it/* --exec babel-node",
     "test:watch": "DEBUG=server:debug NODE_ENV=test mocha  --require @babel/register --watch --reporter  spec   src/tests/ --exec babel-node",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\"",
@@ -22,6 +21,25 @@
     "eslint",
     "test"
   ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/util",
+      "index.js",
+      "routers.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 85,
+        "branches": 100,
+        "functions": 100,
+        "lines": 85
+      }
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/twjmgorduez/gaming-cards.git"
@@ -39,7 +57,6 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "babel-jest": "^25.4.0",
-    "chai": "^4.2.0",
     "debug": "^4.1.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
@@ -50,9 +67,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^25.4.0",
-    "mocha": "^7.1.1",
     "nodemon": "^2.0.2",
-    "nyc": "^15.0.1",
     "supertest": "^4.0.2"
   },
   "engines": {
