@@ -11,12 +11,6 @@ dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 const app = express();
 
 app.use(cors())
-app.use((req, res, done) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    done();
-});
 
 //app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', router);
