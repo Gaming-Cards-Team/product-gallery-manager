@@ -72,7 +72,7 @@ jobs:
         script: | 
           docker rm -f -v product-gallery-manager
           docker rmi -f $(sudo docker images 'jmgorduez/product-gallery-manager' -q)
-          docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
+          docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 -e STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
       
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3
