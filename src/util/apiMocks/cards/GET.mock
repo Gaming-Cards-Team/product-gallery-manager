@@ -1,0 +1,31 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+[
+  {
+    "sides": ["1RD", "1RD", "+2RD", "1F", "1Sh", "-"],
+    "code": "09074",
+    "ttscardid": "50003",
+    "name":   "Naboo Palace Guard",
+    "imagesrc": "https://swdestinydb.com/bundles/cards/en/09/09074.jpg"
+  },
+{
+    "sides": ["1RD","2RD","2RD1","1R","-","-"],
+    "code": "01002",
+    "ttscardid": "50003",
+    "name":   "Trooper",
+    "imagesrc": "https://swdestinydb.com/bundles/cards/en/01/01002.jpg"
+  },
+  {
+    "sides": ["2MD",
+      "2MD",
+      "3MD1",
+      "1Dr",
+      "1R",
+      "-"],
+    "code": "01003",
+    "ttscardid": "1302",
+    "name":   "General Grievous",
+    "imagesrc": "https://swdestinydb.com/bundles/cards/en/01/01003.jpg"
+  }
+]
