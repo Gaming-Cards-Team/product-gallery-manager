@@ -4,7 +4,7 @@
   "description": "Back-end Gaming cards",
   "main": "index.js",
   "scripts": {
-    "transpile": "babel src/main -d --out-dir dist",
+    "transpile": "babel src/ -d --out-dir dist",
     "clean": "rimraf dist",
     "build": "npm-run-all clean transpile",
     "serve": "NODE_ENV=production node ./dist/index.js",
