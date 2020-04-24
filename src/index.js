@@ -6,7 +6,7 @@ import cors from 'cors'
 import dotenv from "dotenv";
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 
-const swaggerDocument = yamljs.load('swagger.yml')
+//const swaggerDocument = yamljs.load('swagger.yml')
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use((req, res, done) => {
     done();
 });
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+//app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1', router);
 
 app.listen(process.env.PORT, () => {

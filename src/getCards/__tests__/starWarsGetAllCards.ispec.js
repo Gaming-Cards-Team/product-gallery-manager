@@ -1,18 +1,40 @@
-const mockStarWarCards = [{ id: "001", name: "darth vader", image: "url-image" }];
-import MockExpressResponse from 'mock-express-response'
-import MockExpressRequest  from 'mock-express-request'
-import starWarCardsService from "../starWarCardsService";
-starWarCardsService.getStarWarsCards = jest.fn(() => mockStarWarCards);
-import getCards from "../starWarsCardsController";
+import http from "http";
+import mockserver from "mockserver";
+import app from '../../index';
+import supertest from 'supertest';
 
-describe("star Wars cards controller", () => {
-  it("should get all cards", async () => {
-    const response = new MockExpressResponse()
-    const request = new MockExpressRequest()
+const request =  supertest(app);
 
-    await getCards(request, response);
+describe("star Wars Cards", () => {
 
-    expect(starWarCardsService.getStarWarsCards).toHaveBeenCalledTimes(1);
+   // http.createServer(mockserver('src/GetCards/__mocks__')).listen(9001);
+
+
+  beforeAll(async () => {
+  });
+
+  it("should get all cards", async (done) => {
+   
+    const expectedStarWarsCard = [
+      {
+        "code": "01002",
+        "name":   "Trooper",
+        "image": "https://swdestinydb.com/bundles/cards/en/01/01002.jpg"
+      },
+    ];
+
+
+    const response = await request
+         .get('/api/v1/cards')
+        // .set('Accept', 'application/json');
+
+        expect(response.status).toBe(200);
+         done();
+             
+         //.expect('Content-Type', 'charset=utf-8')
+         //.expect(200)
+        // .expect(expectedStarWarsCard)
+        
+         
   });
 });
-
