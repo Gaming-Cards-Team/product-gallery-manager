@@ -1,4 +1,4 @@
-# product-gallery-manager ![Deploy to QA](https://github.com/twjmgorduez/product-gallery-manager/workflows/Deploy%20to%20QA/badge.svg?branch=master&event=push) ![Deploy to PROD](https://github.com/twjmgorduez/product-gallery-manager/workflows/Deploy%20to%20PROD/badge.svg?branch=master&event=milestone)
+# product-gallery-manager ![Deploy to QA](https://github.com/twjmgorduez/product-gallery-manager/workflows/Deploy%20to%20QA/badge.svg?branch=master&event=push) ![Deploy to PRO](https://github.com/Gaming-Cards-Team/product-gallery-manager/workflows/Deploy%20to%20PRO/badge.svg)
 
 ### Run app.
 ```
