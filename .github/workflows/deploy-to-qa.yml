@@ -75,9 +75,9 @@ jobs:
           docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 -e STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
     
     - name: Check deployment
-      uses: paramt/url-checker@master
+      uses: celinekurpershoek/github-actions-link-checker@{version}
       with:
-        files: "http://${{ secrets.AWS_SERVER_QA }}:8080/api/v1/cards3"  
+        url: "http://${{ secrets.AWS_SERVER_QA }}:8080/api/v1/cards"  
     
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3
