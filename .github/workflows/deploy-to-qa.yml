@@ -73,15 +73,7 @@ jobs:
           docker rm -f -v product-gallery-manager
           docker rmi -f $(sudo docker images 'jmgorduez/product-gallery-manager' -q)
           docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 -e STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
-    
-    - name: Check deployment
-      uses: ruzickap/action-my-broken-link-checker@v1
-      with:
-        url: https://www.fondodirecto.com/PortalElectronico/index2.jsf
-        cmd_params: "--skip-tls-verification --verbose"
-        run_timeout: 10
-        debug: true
-    
+
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3
       with:
