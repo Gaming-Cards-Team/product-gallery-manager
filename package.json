@@ -12,7 +12,7 @@
     "dev": "DEBUG=server:debug NODE_ENV=development nodemon --exec babel-node src/main/index.js",
     "test": "DEBUG=server:debug NODE_ENV=test STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' jest --coverage --findRelatedTests src/**/__tests__/*.spec.js",
     "it": "DEBUG=server:debug NODE_ENV=test STAR_WARS_REST_API_URL='http://localhost:8081/' jest --testPathPattern=ispec\\.js$ --forceExit",
-    "test:watch": "DEBUG=server:debug NODE_ENV=test mocha  --require @babel/register --watch --reporter  spec   src/tests/ --exec babel-node",
+    "test:watch": "DEBUG=server:debug NODE_ENV=test STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' jest --coverage --findRelatedTests src/**/__tests__/*.spec.js --watch",
     "eslint": "eslint src/**/*.js --ignore-pattern \"node_modules/\"",
     "validate": "npm ls",
     "lint": "jshint ."

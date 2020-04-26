@@ -1,27 +1,26 @@
+name: Deploy to PRO
 
-name: Deploy to PROD
-
-on: 
-  milestone:
-    types: [closed]
-    branches: master
+on:
+  release:
+    types: [published]
+    branches: master 
 
 jobs:
-  deploy:
-    name: Upload to AWS PROD enviroment
+  deploy_to_PRO:
+    name: Upload to AWS PRO enviroment
     runs-on: ubuntu-latest
 
     steps:
     - name: Code checkout
       uses: actions/checkout@v2
-    
+          
     - name: Upload app images to the registry
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
         image: jmgorduez/product-gallery-manager
         tag: ${{ github.sha }}
         registry: docker.io
-        dockerfile: deploy-app-Dockerfile
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -30,15 +29,15 @@ jobs:
       env: 
         TAG: ${{ github.sha }}
       with:
-        host: ${{ secrets.AWS_SERVER_QA }}
-        username: ${{ secrets.AWS_USER_QA }}
-        key: ${{ secrets.EC2 }}
+        host: ${{ secrets.AWS_SERVER_PRO }}
+        username: ${{ secrets.AWS_USER_PRO }}
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
         envs: TAG
-        script: |
-          sudo docker rm -f -v product-gallery-manager
-          sudo docker rmi -f $(sudo docker images 'jmgorduez/product-gallery-manager' -q)
-          sudo docker run -d -p 8080:8080 --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
+        script: | 
+          docker rm -f -v product-gallery-manager
+          docker rmi -f $(sudo docker images 'jmgorduez/product-gallery-manager' -q)
+          docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 -e STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
       
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3
@@ -47,4 +46,4 @@ jobs:
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      if: always()
+      if: always() 
