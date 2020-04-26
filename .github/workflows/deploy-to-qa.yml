@@ -75,8 +75,13 @@ jobs:
           docker run -d -p 8080:8080 --network product-gallery-network -e PORT=8080 -e STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' --name product-gallery-manager "jmgorduez/product-gallery-manager:${TAG}"
     
     - name: Check deployment
-      uses: peaceiris/actions-broken-link-checker@v0.7.8
-      args: ["https://uuuuuuuuuu.com", "-ro"]  
+      uses: ruzickap/action-my-broken-link-checker@v1
+      with:
+        url: https://mybhgjgkhkjhkjhkj.com
+        pages_path: ./public/
+        cmd_params: "--skip-tls-verification --verbose"
+        run_timeout: 10
+        debug: true
     
     - name: Slack Notification
       uses: sonots/slack-notice-action@v3
