@@ -77,7 +77,7 @@ jobs:
     - name: Check deployment
       uses: ruzickap/action-my-broken-link-checker@v1
       with:
-        url: http://${{ secrets.AWS_SERVER_QA }}/api/v1/cards
+        url: http://${{ secrets.AWS_SERVER_QA }}/api/v1/cardsw
         cmd_params: "--skip-tls-verification --verbose"
         run_timeout: 10
         debug: true
