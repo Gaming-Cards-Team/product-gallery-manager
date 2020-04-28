@@ -1,5 +1,8 @@
 FROM node:10
 
+ENV STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/'
+ENV PORT=8080
+
 # Create app directory
 WORKDIR /usr/src/app
 
