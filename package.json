@@ -8,7 +8,7 @@
     "clean": "rimraf dist",
     "build": "npm-run-all clean transpile",
     "serve": "NODE_ENV=production node ./dist/index.js",
-    "start": "NODE_ENV=development babel-node src/index.js",
+    "start": "NODE_ENV=development STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' PORT=8080 babel-node src/index.js",
     "dev": "DEBUG=server:debug NODE_ENV=development nodemon --exec babel-node src/main/index.js",
     "test": "DEBUG=server:debug NODE_ENV=test STAR_WARS_REST_API_URL='https://swdestinydb.com/api/public/' jest --coverage --findRelatedTests src/**/__tests__/*.spec.js",
     "it": "DEBUG=server:debug NODE_ENV=test STAR_WARS_REST_API_URL='http://localhost:8081/' jest --testPathPattern=ispec\\.js$ --forceExit",
