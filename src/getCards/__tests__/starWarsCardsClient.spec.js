@@ -1,6 +1,6 @@
 jest.mock('node-fetch');
 import fetch from 'node-fetch';
-import {getAllStarWarsCards} from "../starWarsCardsClient";
+import {getAllStarWarsCards} from "../starwarsCardsClient";
 
 describe("starWars client", () => {
   it("should get all cards", async () => {

@@ -1,4 +1,4 @@
-import  starwarsCardsClient from "./starWarsCardsClient";
+import  starwarsCardsClient from "./starwarsCardsClient";
 import pagination from "paginate-array";
 
 const getStarWarsCards = async (page, limit) => {

@@ -1,4 +1,4 @@
-import starWarCardsService from "./starWarCardsService";
+import starWarCardsService from "./starwarCardsService";
 
 const getCards = async (request, response) => {
   const cards = await starWarCardsService.getStarWarsCards(request.query.page, request.query.limit);
