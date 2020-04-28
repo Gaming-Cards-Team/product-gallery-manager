@@ -1,7 +1,7 @@
 const mockStarWarCards = [{ id: "001", name: "darth vader", image: "url-image" }];
 import MockExpressResponse from 'mock-express-response'
 import MockExpressRequest  from 'mock-express-request'
-import starWarCardsService from "../starwarCardsService";
+import starWarCardsService from "../starWarCardsService";
 starWarCardsService.getStarWarsCards = jest.fn(() => mockStarWarCards);
 import getCards from "../starWarsCardsController";
 

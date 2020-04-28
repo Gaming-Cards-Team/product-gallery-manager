@@ -1,7 +1,7 @@
 import mockStarWarCards from "../__mocks__/mockGetStarWarsCards";
-import starWarCardsClient from "../starwarsCardsClient";
+import starWarCardsClient from "../starWarsCardsClient";
 starWarCardsClient.getAllStarWarsCards = jest.fn(() => mockStarWarCards);
-import starWarCardsService from "../starwarCardsService";
+import starWarCardsService from "../starWarCardsService";
 
 describe("Star Wars cards gallery service", () => {
   it("should return cards for gallery", async () => {
