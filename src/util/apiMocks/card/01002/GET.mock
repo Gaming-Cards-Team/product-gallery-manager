@@ -1,10 +1,37 @@
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
 
-{
-  "sides": ["1RD","2RD","2RD1","1R","-","-"],
+{ "sides": ["1RD","2RD","2RD1","1R","-","-"],
+  "set_code": "AW",
+  "set_name": "Awakenings",
+  "type_code": "character",
+  "type_name": "Character",
+  "faction_code": "red",
+  "faction_name": "Command",
+  "affiliation_code": "villain",
+  "affiliation_name": "Villain",
+  "rarity_code": "R",
+  "rarity_name": "Rare",
+  "position": 2,
   "code": "01002",
-  "ttscardid": "50003",
-  "name":   "Trooper",
-  "imagesrc": "https://swdestinydb.com/bundles/cards/en/01/01002.jpg"
+  "ttscardid": "1301",
+  "name": "First Order Stormtrooper",
+  "subtitle": null,
+  "cost": null,
+  "health": 7,
+  "points": "7",
+  "text": null,
+  "deck_limit": 4,
+  "flavor": "Members of this new generation of stormtroopers are trained from birth and fed a steady diet of First Order propaganda to ensure absolute loyalty.",
+  "illustrator": null,
+  "is_unique": false,
+  "has_die": true,
+  "has_errata": true,
+  "reprints": [
+  "09020"
+  ],
+  "url": "https://swdestinydb.com/card/01002",
+  "imagesrc": "https://swdestinydb.com/bundles/cards/en/01/01002.jpg",
+  "label": "First Order Stormtrooper",
+  "cp": 700
 }
