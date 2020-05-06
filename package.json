@@ -70,7 +70,7 @@
     "jest": "^25.4.0",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2",
-    "http-terminator": "^2.0.3",
+    "http-shutdown": "^1.2.2",
     "mockserver": "^3.1.1"
   },
   "engines": {
