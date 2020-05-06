@@ -1,18 +1,17 @@
-import http from "http";
-import mockserver from "mockserver";
-import app from '../../index';
 import supertest from 'supertest';
+import getCards from '../starWarsCardsController';
+import express from 'express';
 
 describe("Star Wars Cards", () => {
   
   let server;
+  const app = express();
   beforeEach(() => {
-    server = http.createServer(mockserver('src/util/apiMocks/'));
-    server.listen(8081);
+    app.get('/api/v1/cards', getCards)
   });
 
   it("should get all cards", async () => {
-
+    
     const request = supertest(app);
     const expectedStarWarsCard = [
       {
@@ -26,9 +25,5 @@ describe("Star Wars Cards", () => {
 
     expect(response.status).toBe(200);
     expect(response.body.data).toEqual(expectedStarWarsCard);
-  });
-
-  afterEach(() => {
-    server.close(() => console.log('Mock server closed'));
   });
 });
