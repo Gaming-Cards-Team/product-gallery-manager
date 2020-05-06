@@ -1,0 +1,45 @@
+/* eslint-disable camelcase */
+module.exports =
+{
+  sides: ["1RD", "1RD", "+2RD", "1F", "1Sh", "-"],
+  set_code: "CONV",
+  set_name: "Convergence",
+  type_code: "character",
+  type_name: "Character",
+  faction_code: "red",
+  faction_name: "Command",
+  affiliation_code: "hero",
+  affiliation_name: "Hero",
+  rarity_code: "R",
+  rarity_name: "Rare",
+  subtypes: [
+    {
+      code: "trooper",
+      name: "Trooper",
+    },
+    {
+      code: "guard",
+      name: "Guard",
+    },
+  ],
+  position: 74,
+  code: "09074",
+  ttscardid: "50003",
+  name: "Naboo Palace Guard",
+  subtitle: null,
+  cost: null,
+  health: 9,
+  points: "8",
+  text:
+    "While you have a <i>leader</i> in play, this character gains Guardian.",
+  deck_limit: 3,
+  flavor: null,
+  illustrator: " ",
+  is_unique: false,
+  has_die: true,
+  has_errata: false,
+  url: "https://swdestinydb.com/card/09074",
+  imagesrc: "https://swdestinydb.com/bundles/cards/en/09/09074.jpg",
+  label: "Naboo Palace Guard",
+  cp: 800,
+};

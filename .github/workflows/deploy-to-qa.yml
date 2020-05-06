@@ -34,6 +34,11 @@ jobs:
       run: |
         npm test    
 
+    - name: Start mock server  
+      run: |
+        npm install -g mockserver
+        npm run mockServer
+
     - name: Running integration tests  
       run: |
         npm run it    

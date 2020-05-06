@@ -5,11 +5,6 @@ import supertest from 'supertest';
 
 describe("Star Wars Cards", () => {
 
-  beforeAll(async () => {
-    
-    http.createServer(mockserver('src/util/apiMocks/')).listen(8081);
-  });
-
   it("should get all cards", async () => {
    
     const request = supertest(app);

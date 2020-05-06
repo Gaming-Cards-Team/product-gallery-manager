@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+
+{
+  "sides": ["1RD","2RD","2RD1","1R","-","-"],
+  "code": "01002",
+  "ttscardid": "50003",
+  "name":   "Trooper",
+  "imagesrc": "https://swdestinydb.com/bundles/cards/en/01/01002.jpg"
+}
