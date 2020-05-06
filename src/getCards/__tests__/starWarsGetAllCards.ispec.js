@@ -1,14 +1,15 @@
 import supertest from 'supertest';
 import getCards from '../starWarsCardsController';
 import express from 'express';
-import apiMockServer from '../../util/apiMocks/apiMockServer'
+import apiMockServer from '../../util/apiMocks/apiMockServer';
+import { GET_CARDS_URL } from '../../util/constant';
 
 describe("Star Wars Cards", () => {
   
   const app = express();
   beforeEach(async () => {
     apiMockServer.run()
-    app.get('/api/v1/cards', getCards)
+    app.get(GET_CARDS_URL, getCards)
   });
 
   it("should get all cards", async () => {

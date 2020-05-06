@@ -1,14 +1,17 @@
 import supertest from 'supertest';
 import getCard from '../starWarsCardsController';
 import express from 'express';
-import apiMockServer from '../../util/apiMocks/apiMockServer'
+import apiMockServer from '../../util/apiMocks/apiMockServer';
+import { GET_CARD_URL, GET_CARD_01002_URL, ACCEPT, APPLICATION_JSON } from '../../util/constant';
+
+
 
 describe("Star Wars Card", () => {
 
   const app = express();
   beforeEach( async () => {
     apiMockServer.run();
-    app.get('/api/v1/card', getCard)
+    app.get(GET_CARD_URL, getCard)
   });
 
   it("should get a card with id = 01002", async () => {
@@ -30,7 +33,7 @@ describe("Star Wars Card", () => {
       subtitle: null,
     };
 
-    const response = await request.get('/api/v1/card?cardId=01002').set('Accept', 'application/json');
+    const response = await request.get(GET_CARD_01002_URL).set(ACCEPT, APPLICATION_JSON);
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expectedStarWarsCard);

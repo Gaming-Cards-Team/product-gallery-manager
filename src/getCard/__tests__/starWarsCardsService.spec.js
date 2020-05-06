@@ -3,6 +3,9 @@ import mockStarWarCard01003 from "../__mocks__/mockGetStarWarsCard-01003";
 import starWarsCardClient from "../starWarsCardClient";
 import starWarCardService from "../starWarCardService";
 
+const _09074 = '09074';
+const _01003 = '01003';
+
 describe("Star Wars card service", () => {
   it("should return the card with id = 09074", async () => {
 
@@ -23,10 +26,10 @@ describe("Star Wars card service", () => {
       subtitle: null,
     };
 
-    const card = await starWarCardService.getStarWarsCard('09074');
+    const card = await starWarCardService.getStarWarsCard(_09074);
 
     expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalled();
-    expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalledWith('09074');
+    expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalledWith(_09074);
     expect(card).toEqual(expectedCard);
   });
 
@@ -49,10 +52,10 @@ describe("Star Wars card service", () => {
       subtitle: "Jedi Hunter",
     };
 
-    const card = await starWarCardService.getStarWarsCard('01003');
+    const card = await starWarCardService.getStarWarsCard(_01003);
 
     expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalled();
-    expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalledWith('01003');
+    expect(starWarsCardClient.getStarWarsCard).toHaveBeenCalledWith(_01003);
     expect(card).toEqual(expectedCard);
   });
 });

@@ -1,5 +1,6 @@
 import  starWarsCardClient from "./starWarsCardClient";
-import htmlToText from 'html-to-text'
+import { UNIQUE, NON_UNIQUE} from '../util/constant'
+import {capitalize, htmlTextToFlatText} from '../util/stringUtil'
 
 const getStarWarsCard = async (cardId) => {
   const card = await starWarsCardClient.getStarWarsCard(cardId);
@@ -7,9 +8,9 @@ const getStarWarsCard = async (cardId) => {
 };
 
 const toOwnCard = (card) => {
-    const uniqueness = card.is_unique ? 'Unique' : 'Non/Unique'
-    const color =  `${card.faction_code.charAt(0).toUpperCase()}${card.faction_code.slice(1)}`;
-    const text = htmlToText.fromString(card.text, {wordwrap: 130});
+    const uniqueness = card.is_unique ? UNIQUE : NON_UNIQUE
+    const color =  capitalize(card.faction_code);
+    const text = htmlTextToFlatText(card.text);
     return {
       id: card.code, 
       name: card.name, 
