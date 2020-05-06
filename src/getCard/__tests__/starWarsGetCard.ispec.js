@@ -3,13 +3,13 @@ import mockserver from "mockserver";
 import app from '../../index';
 import supertest from 'supertest';
 
-let server;
-
 describe("Star Wars Card", () => {
+
+  let server;
 
   beforeEach(() => {
     server = http.createServer(mockserver('src/util/apiMocks/'));
-    server.listen(8081);
+    //server.listen(8081);
   });
 
   it("should get a card with id = 01002", async () => {
@@ -29,6 +29,6 @@ describe("Star Wars Card", () => {
   });
 
   afterEach(() => {
-    server.close(() => console.log('Server closed'));
+    server.close(() => console.log('Mock server closed'));
   });
 });
