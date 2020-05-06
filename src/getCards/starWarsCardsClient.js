@@ -1,4 +1,5 @@
 import fetch from "node-fetch";
+import { GET } from '../util/constant';
 import dotenv from "dotenv";
 dotenv.config({ silent: process.env.NODE_ENV === 'production' });
 
@@ -6,7 +7,7 @@ const getAllStarWarsCards = async () => {
   const url = `${process.env.STAR_WARS_REST_API_URL}cards`;
   console.log(url)
   const response = await fetch(url, {
-    method: "GET",
+    method: GET,
   });
   const cardsResponse = await response.json();
   console.log("get data for all cards succesfully");

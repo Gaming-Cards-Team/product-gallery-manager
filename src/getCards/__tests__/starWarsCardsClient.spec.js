@@ -1,6 +1,7 @@
 jest.mock('node-fetch');
 import fetch from 'node-fetch';
 import {getAllStarWarsCards} from "../starWarsCardsClient";
+import { GET } from '../../util/constant';
 
 describe("starWars client", () => {
   it("should get all cards", async () => {
@@ -11,7 +12,7 @@ describe("starWars client", () => {
     expect(fetch).toHaveBeenCalledWith(
       "https://swdestinydb.com/api/public/cards",
       {
-        method: "GET",
+        method: GET,
       }
     );
   });
