@@ -29,7 +29,7 @@ jobs:
       env: 
         TAG: ${{ github.sha }}
       with:
-        host: ec2-3-136-158-140.us-east-2.compute.amazonaws.com
+        host: ec2-3-16-209-207.us-east-2.compute.amazonaws.com
         username: ${{ secrets.AWS_USER_PRO }}
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
