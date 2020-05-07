@@ -18,7 +18,7 @@ jobs:
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
         image: jmgorduez/product-gallery-manager
-        tag: ${{ github.sha }}
+        tag: "PRO"
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
@@ -27,7 +27,7 @@ jobs:
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
       env: 
-        TAG: ${{ github.sha }}
+        TAG: "PRO"
       with:
         host: ec2-3-16-209-207.us-east-2.compute.amazonaws.com
         username: ${{ secrets.AWS_USER_PRO }}
