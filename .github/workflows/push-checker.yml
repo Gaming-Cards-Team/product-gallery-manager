@@ -1,0 +1,43 @@
+name: Push checker
+
+on:
+  push:
+    branches-ignore: [ master ]
+
+jobs:
+  push_checker:
+    name: Push checker
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Code checkout
+      uses: actions/checkout@v2
+
+    - name: NPM install
+      run: |
+        npm i
+
+    - name: Code review  
+      run: |
+        npm run eslint
+  
+    - name: Running unit tests  
+      run: |
+        npm test    
+      env:
+        CI: true
+
+    - name: Running integration tests  
+      run: |
+        npm run it    
+      env:
+        PORT: 8080
+        
+    - name: Slack Notification
+      uses: sonots/slack-notice-action@v3
+      with:
+        status: ${{ job.status }}
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: always()
