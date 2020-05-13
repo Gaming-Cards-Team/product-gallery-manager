@@ -61,7 +61,7 @@ jobs:
       env: 
         TAG: "QA"
       with:
-        host: ec2-3-15-56-101.us-east-2.compute.amazonaws.com
+        host: ec2-3-23-123-190.us-east-2.compute.amazonaws.com
         username: ${{ secrets.AWS_USER_QA }}
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
