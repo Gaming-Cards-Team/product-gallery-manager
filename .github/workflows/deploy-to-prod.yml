@@ -15,7 +15,10 @@ jobs:
       run: sudo apt install docker.io
 
     - name: Docker login
-      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Pull image
       run: docker pull 'jmgorduez/product-gallery-manager:QA'
@@ -27,6 +30,9 @@ jobs:
     - name: Push image
       run: |
         docker push 'jmgorduez/product-gallery-manager:PRO'
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
