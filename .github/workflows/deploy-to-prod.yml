@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy_to_PRO:
-    name: Upload to AWS PRO enviroment
+    name: Upload to AWS PRO enviroment 
     runs-on: ubuntu-latest
 
     steps:
