@@ -11,29 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install docker
-      run: sudo apt install docker.io
-
-    - name: Docker login
-      run: docker login docker.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Pull image
-      run: docker pull 'jmgorduez/product-gallery-manager:QA'
-
-    - name: Tags image
-      run: |
-        docker tag 'jmgorduez/product-gallery-manager:QA' 'jmgorduez/product-gallery-manager:PRO'
-
-    - name: Push image
-      run: |
-        docker push 'jmgorduez/product-gallery-manager:PRO'
-      env:
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-
+    - name: Upload app images to the registry
+      uses: mr-smithers-excellent/docker-build-push@v2
+      with:
+        image: jmgorduez/product-gallery-manager
+        tag: "PRO"
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
       env: 
