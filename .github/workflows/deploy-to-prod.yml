@@ -30,9 +30,9 @@ jobs:
     - name: Push image
       run: |
         docker push 'jmgorduez/product-gallery-manager:PRO'
-       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
