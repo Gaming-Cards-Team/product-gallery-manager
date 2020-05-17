@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Code checkout
+      uses: actions/checkout@v2
+
     - name: Upload app images to the registry
       uses: mr-smithers-excellent/docker-build-push@v2
       with:
@@ -20,7 +23,7 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        
+
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
       env: 
