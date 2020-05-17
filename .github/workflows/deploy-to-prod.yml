@@ -11,15 +11,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Retag to latest
-      uses: ybrin/retag-docker-image@0.1.0
-      with:
-        registry: docker.io
-        name: jmgorduez/product-gallery-manager
-        old_tag: "QA"
-        new_tag: "PRO"
-        username: ${{ secrets.DOCKER_USER }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install docker
+      run: sudo apt install docker.io
+
+    - name: Docker login
+      run: docker login docker.io -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Pull image
+      run: docker pull 'jmgorduez/product-gallery-manager:QA'
+
+    - name: Tags image
+      run: |
+        docker tag 'jmgorduez/product-gallery-manager:QA' 'jmgorduez/product-gallery-manager:PRO'
+
+    - name: Push image
+      run: |
+        docker push 'jmgorduez/product-gallery-manager:PRO'
+       env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Deploy app to AWS
       uses: appleboy/ssh-action@master
