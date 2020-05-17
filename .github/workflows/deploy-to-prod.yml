@@ -14,11 +14,12 @@ jobs:
     - name: Install docker
       run: sudo apt install docker.io
 
-    - name: Docker login
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+    - name: Log in to registry
+      uses: actions/docker/login@master
       env:
+        DOCKER_REGISTRY_URL: docker.pkg.github.com
         DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Pull image
       run: docker pull 'jmgorduez/product-gallery-manager:QA'
